@@ -36,6 +36,8 @@ The script writes the following to `results/`:
 - `portfolio_metrics.csv` — equal-weighted portfolio metrics.
 - `pair_trades.csv` — trade-level results.
 - `portfolio_daily_returns.csv` — daily net portfolio returns and equity.
+- `adjusted_prices.csv` — cleaned adjusted prices used by the run.
+- `charts/` — normalized prices, z-score signals, equity, drawdown, and pair-return charts.
 
 ## Methodology
 

@@ -10,6 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from backtest import run_pair_backtest, performance_metrics  # noqa: E402
+from charts import create_charts  # noqa: E402
 from data import SECTOR_GROUPS, clean_prices, download_adjusted_prices, unique_group_pairs  # noqa: E402
 from research import log_prices, screen_pairs  # noqa: E402
 
@@ -36,6 +37,7 @@ def main() -> None:
         raise RuntimeError("No usable price data was downloaded")
 
     log_price_frame = log_prices(prices)
+    prices.to_csv(results_dir / "adjusted_prices.csv")
     formation = log_price_frame.loc[:FORMATION_END]
     test = log_price_frame.loc[TEST_START:]
     if formation.empty or test.empty:
@@ -86,6 +88,15 @@ def main() -> None:
         pd.concat(trade_rows, ignore_index=True).to_csv(results_dir / "pair_trades.csv", index=False)
     else:
         pd.DataFrame().to_csv(results_dir / "pair_trades.csv", index=False)
+
+    create_charts(
+        prices=prices,
+        selected_pairs=selected,
+        pair_metrics=pair_metrics,
+        portfolio_daily=portfolio_daily,
+        output_dir=results_dir / "charts",
+        test_start=TEST_START,
+    )
 
     print("\nSelected pairs:")
     print(selected[["asset_a", "asset_b", "group", "correlation", "adf_statistic", "p_value"]].to_string(index=False))
