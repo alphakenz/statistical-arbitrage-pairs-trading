@@ -37,7 +37,7 @@ The script writes the following to `results/`:
 - `pair_trades.csv` — trade-level results.
 - `portfolio_daily_returns.csv` — daily net portfolio returns and equity.
 
-## How to discuss the method
+## Methodology
 
 Correlation is used only to reduce the search space. It is not treated as proof of a tradable relationship. The hedge ratio is estimated using formation-period log prices, and the residual spread is tested for stationarity. Pair selection and all model parameters are fixed before the out-of-sample period.
 

@@ -1,4 +1,4 @@
-# Initial Research Results
+# /Research Results
 
 This is the first reproducible run of the project using formation-period selection and a 2023–2025 out-of-sample test.
 
